@@ -29,6 +29,7 @@ app.use(errorHandler);
 
 //connect to db and start server
 
+
 mongoose
     .connect(process.env.MOGO_URI)
     .then(()=>{

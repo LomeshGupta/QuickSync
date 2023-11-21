@@ -3,6 +3,16 @@ const User = require("../models/userModel");
 const { json } = require("body-parser");
 const bcrypt = require("bcryptjs");
 
+
+//get all users-------------------------------------------------
+
+const getUsers = asyncHandler(async (req, res) => {
+    const users = await User.find();
+    res.status(200).json(users);
+  });
+
+
+//register user ---------------------------------------------
 const registerUser = asyncHandler( async(req, res) => {
     // console.log(JSON.stringify(req.body));
   const { username, fullname, email, password } = req.body
@@ -61,4 +71,5 @@ const hashedpass = await bcrypt.hash(password, salt);
 
 module.exports = {
   registerUser,
+  getUsers
 };
