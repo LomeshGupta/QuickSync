@@ -3,35 +3,35 @@ const User = require("../models/userModel");
 const { json } = require("body-parser");
 const bcrypt = require("bcryptjs");
 
-
 //get all users----------------------------------------------
 
 const getUsers = asyncHandler(async (req, res) => {
-    const users = await User.find();
-    res.status(200).json(users);
-  });
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  const users = await User.find();
+  res.status(200).json(users);
+});
 
-
-  //delete one user------------------------------------------
-  const deleteUser = asyncHandler(async (req, res) => {
-    const { username } = req.body
-    if (!username) {
-        res.status(400)
-        throw new Error("Please enter all required fields.");
-      }
-    const users = await User.deleteOne({username});
-    res.status(200);
-    res.send("Deleted Successflly");
-  });
-
+//delete one user------------------------------------------
+const deleteUser = asyncHandler(async (req, res) => {
+  const { username } = req.body;
+  if (!username) {
+    res.status(400);
+    throw new Error("Please enter all required fields.");
+  }
+  const users = await User.deleteOne({ username });
+  res.status(200);
+  res.send("Deleted Successflly");
+});
 
 //register user ---------------------------------------------
-const registerUser = asyncHandler( async(req, res) => {
-    // console.log(JSON.stringify(req.body));
-  const { username, fullname, email, password } = req.body
+const registerUser = asyncHandler(async (req, res) => {
+  // console.log(JSON.stringify(req.body));
+  const { username, fullname, email, password } = req.body;
   //validations
   if (!username || !fullname || !email || !password) {
-    res.status(400)
+    res.status(400);
     throw new Error("Please enter all required fields.");
   }
 
@@ -43,17 +43,17 @@ const registerUser = asyncHandler( async(req, res) => {
     res.status(400);
     throw new Error("Username already exist.");
   }
-//encryption
-const salt  = await bcrypt.genSalt(10)
-const hashedpass = await bcrypt.hash(password, salt);
+  //encryption
+  const salt = await bcrypt.genSalt(10);
+  const hashedpass = await bcrypt.hash(password, salt);
 
   //create new user
-  
+
   const user = await User.create({
     username,
     fullname,
     email,
-    password : hashedpass,
+    password: hashedpass,
   });
   if (user) {
     const {
@@ -76,8 +76,7 @@ const hashedpass = await bcrypt.hash(password, salt);
       photo,
       phone,
     });
-  }
-  else {
+  } else {
     res.status(400);
     throw new Error("Invalid user data");
   }
@@ -86,5 +85,5 @@ const hashedpass = await bcrypt.hash(password, salt);
 module.exports = {
   registerUser,
   getUsers,
-  deleteUser
+  deleteUser,
 };
