@@ -12,13 +12,15 @@ const PORT = process.env.PORT || 5000;
 
 const corsOptions = {
   origin: "*",
+  allowed: "POST, GET, PUT",
+
 };
 
 //middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors(corsOptions));
+app.use(cors());
 
 //routesmiddleware
 app.use("/api/users", userRoute);
