@@ -6,21 +6,26 @@ const cors = require("cors");
 const userRoute = require("./routes/userRoute");
 const errorHandler = require("./Middleware/errorMiddleware");
 
-const app = express()
+const app = express();
 
 const PORT = process.env.PORT || 5000;
 
+const corsOptions = {
+  origin: "*",
+};
+
 //middlewares
 app.use(express.json());
-app.use(express.urlencoded({extended:false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors(corsOptions));
 
 //routesmiddleware
-app.use('/api/users',userRoute);
+app.use("/api/users", userRoute);
 
 //routes
-app.get("/",(req, res) => {
-    res.send("Home");
+app.get("/", (req, res) => {
+  res.send("Home");
 });
 
 //error
@@ -29,12 +34,11 @@ app.use(errorHandler);
 
 //connect to db and start server
 
-
 mongoose
-    .connect(process.env.MOGO_URI)
-    .then(()=>{
-        app.listen(PORT, ()=> {
-            console.log(`Server is running on port: ${PORT}`);
-        })
-    })
-    .catch((err) => console.log(err))
+  .connect(process.env.MOGO_URI)
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server is running on port: ${PORT}`);
+    });
+  })
+  .catch((err) => console.log(err));
