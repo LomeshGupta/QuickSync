@@ -28,7 +28,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 //register user ---------------------------------------------
 const registerUser = asyncHandler(async (req, res) => {
   // console.log(JSON.stringify(req.body));
-  const { username, fullname, email, password } = req.body;
+  const { username, fullname, email, password, designation, department, employed } = req.body;
   //validations
   if (!username || !fullname || !email || !password) {
     res.status(400);
@@ -54,6 +54,9 @@ const registerUser = asyncHandler(async (req, res) => {
     fullname,
     email,
     password: hashedpass,
+    designation,
+    department,
+    employed,
   });
   if (user) {
     const {
@@ -63,6 +66,8 @@ const registerUser = asyncHandler(async (req, res) => {
       email,
       password,
       designation,
+      department,
+      employed,
       photo,
       phone,
     } = user;
@@ -71,8 +76,9 @@ const registerUser = asyncHandler(async (req, res) => {
       username,
       fullname,
       email,
-      password,
       designation,
+      department,
+      employed,
       photo,
       phone,
     });

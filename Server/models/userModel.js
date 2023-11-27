@@ -34,6 +34,14 @@ var userDetail = new userSchema({
         type : String,
         require : [true, "Please add a Designation"]
     },
+    department :{
+        type : String,
+        require : [true, "Please add a Department"]
+    },
+    employed :{
+        type : Date,
+        require : [true, "Please add a Employment Date"]
+    },
     photo:{
         type : String,
         require : [true, "Please add a photo"],
