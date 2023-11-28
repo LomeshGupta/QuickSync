@@ -18,9 +18,9 @@ const corsOptions = {
 
 //middlewares
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors());
 
 //routesmiddleware
 app.use("/api/users", userRoute);
