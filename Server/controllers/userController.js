@@ -15,10 +15,10 @@ const getUsers = asyncHandler(async (req, res) => {
 
 //delete one user------------------------------------------
 const deleteUser = asyncHandler(async (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "POST, GET, PUT");
+  res.set("Access-Control-Allow-Headers", "Content-Type");
+
   const { username } = req.body;
   if (!username) {
     res.status(400);
