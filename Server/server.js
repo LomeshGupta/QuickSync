@@ -18,7 +18,7 @@ const corsOptions = {
 app.use(express.json());
 app.use(
   cors({
-    origin: "*",
+    origin: ["http://localhost:3000", "https://quicksyncpro.netlify.app/"],
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
