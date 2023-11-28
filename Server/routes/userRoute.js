@@ -5,11 +5,6 @@ const {
   deleteUser,
 } = require("../controllers/userController");
 const router = express.Router();
-const cors = require("cors");
-
-const app = express();
-app.use(express.json());
-app.use(cors());
 
 router.post("/deleteuser", deleteUser);
 router.get("/getusers", getUsers);
