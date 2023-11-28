@@ -13,7 +13,6 @@ const PORT = process.env.PORT || 5000;
 const corsOptions = {
   origin: "*",
   allowed: "POST, GET, PUT",
-
 };
 
 //middlewares
