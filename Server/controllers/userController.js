@@ -3,7 +3,9 @@ const User = require("../models/userModel");
 const { json } = require("body-parser");
 const bcrypt = require("bcryptjs");
 const cors = require("cors");
+const express = require("express");
 
+const app = express();
 app.use(cors());
 
 //get all users----------------------------------------------
