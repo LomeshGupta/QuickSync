@@ -16,14 +16,14 @@ const corsOptions = {
 
 //middlewares
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://quicksyncpro.netlify.app/"],
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
-app.use(express.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
 //routesmiddleware
 app.use("/api/users", userRoute);

@@ -2,6 +2,14 @@ const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 const { json } = require("body-parser");
 const bcrypt = require("bcryptjs");
+const cors = require("cors");
+
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
 
 //get all users----------------------------------------------
 
