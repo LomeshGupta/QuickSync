@@ -25,7 +25,8 @@ const deleteUser = asyncHandler(async (req, res) => {
     throw new Error("Please enter all required fields.");
   }
   const users = await User.deleteOne({ username });
-  res.status(200).json();
+  res.status(200);
+  res.send("deleted successfully");
 });
 
 //register user ---------------------------------------------
