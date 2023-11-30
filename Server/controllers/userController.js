@@ -8,7 +8,7 @@ const cloudinary = require("cloudinary").v2;
 cloudinary.config({ 
   cloud_name: 'dnbral0xq', 
   api_key: '893691271434142', 
-  api_secret: '***************************' 
+  api_secret: 'LKUQNkA5JgqD___2sBlkwDytC00' 
 });
 
 //get all users----------------------------------------------
