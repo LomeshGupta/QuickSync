@@ -5,10 +5,10 @@ const bcrypt = require("bcryptjs");
 const { fileSizeFormatter } = require("../utils/fileUpload");
 const cloudinary = require("cloudinary").v2;
 
-cloudinary.config({ 
-  cloud_name: 'dnbral0xq', 
-  api_key: '893691271434142', 
-  api_secret: 'LKUQNkA5JgqD___2sBlkwDytC00' 
+cloudinary.config({
+  cloud_name: "dnbral0xq",
+  api_key: "893691271434142",
+  api_secret: "LKUQNkA5JgqD___2sBlkwDytC00",
 });
 
 //get all users----------------------------------------------
@@ -67,6 +67,10 @@ const registerUser = asyncHandler(async (req, res) => {
 
   let fileData = {};
   if (req.file) {
+    if (req.file) {
+      res.status(400);
+      throw new Error(req.file.path);
+    }
     // Save image to cloudinary
     let uploadedFile;
     try {
