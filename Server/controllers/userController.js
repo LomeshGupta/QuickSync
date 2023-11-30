@@ -38,8 +38,7 @@ const registerUser = asyncHandler(async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  console.log(JSON.stringify(req.body));
-  throw new Error("stop");
+  // res.send(JSON.stringify(req.body));
   const {
     username,
     fullname,
