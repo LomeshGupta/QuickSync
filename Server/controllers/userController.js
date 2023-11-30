@@ -65,11 +65,6 @@ const registerUser = asyncHandler(async (req, res) => {
 
   //cloudinary
 
-  if (req.photo) {
-    res.status(400);
-    throw new Error(res.photo);
-  }
-
   let fileData = {};
   if (req.file) {
     // Save image to cloudinary
