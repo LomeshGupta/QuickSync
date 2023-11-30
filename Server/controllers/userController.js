@@ -70,7 +70,7 @@ const registerUser = asyncHandler(async (req, res) => {
     let uploadedFile;
     try {
       uploadedFile = await cloudinary.uploader.upload(req.file.path, {
-        folder: "Pinvent App",
+        folder: "server",
         resource_type: "image",
       });
     } catch (error) {
