@@ -43,9 +43,9 @@ var userDetail = new userSchema({
         require : [true, "Please add a Employment Date"]
     },
     photo:{
-        type : String,
-        require : [true, "Please add a photo"],
-        default : "https://w7.pngwing.com/pngs/981/645/png-transparent-default-profile-united-states-computer-icons-desktop-free-high-quality-person-icon-miscellaneous-silhouette-symbol.png"
+        type : Object,
+        require : [false, "Please add a photo"],
+        default : {}
     },
     phone:{
         type : String,
