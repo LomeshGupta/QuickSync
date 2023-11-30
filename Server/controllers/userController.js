@@ -45,6 +45,7 @@ const registerUser = asyncHandler(async (req, res) => {
     email,
     password,
     designation,
+    file,
     department,
     employed,
   } = req.body;
