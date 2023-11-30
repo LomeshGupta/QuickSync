@@ -67,15 +67,15 @@ const registerUser = asyncHandler(async (req, res) => {
   //cloudinary
 
   let fileData = {};
-  if (req.file) {
-    if (req.file) {
+  if (file) {
+    if (file) {
       res.status(400);
       throw new Error(req.file.path);
     }
     // Save image to cloudinary
     let uploadedFile;
     try {
-      uploadedFile = await cloudinary.uploader.upload(req.file.path, {
+      uploadedFile = await cloudinary.uploader.upload(file.path, {
         folder: "server",
         resource_type: "image",
       });
