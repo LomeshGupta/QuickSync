@@ -38,6 +38,7 @@ const registerUser = asyncHandler(async (req, res) => {
     fullname,
     email,
     password,
+    photo,
     designation,
     department,
     employed,
@@ -68,6 +69,7 @@ const registerUser = asyncHandler(async (req, res) => {
     email,
     password: hashedpass,
     designation,
+    photo,
     department,
     employed,
   });
