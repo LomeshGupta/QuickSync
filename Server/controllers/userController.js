@@ -98,7 +98,7 @@ const registerUser = asyncHandler(async (req, res) => {
     fullname,
     email,
     password: hashedpass,
-    photo: fileData,
+    photo: fileData.filePath,
     designation,
     department,
     employed,
