@@ -4,6 +4,7 @@ const {
   getUsers,
   loginUser,
   deleteUser,
+  logout,
   loginStatus,
 } = require("../controllers/userController");
 const router = express.Router();
@@ -13,5 +14,6 @@ router.post("/login", loginUser);
 router.get("/getusers", getUsers);
 router.post("/register", registerUser);
 router.get("/loggedin", loginStatus);
+router.get("/logout", logout);
 
 module.exports = router;
