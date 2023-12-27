@@ -50,6 +50,7 @@ const registerUser = asyncHandler(async (req, res) => {
     designation,
     department,
     employed,
+    phone,
   } = req.body;
   //validations
   if (!username || !fullname || !email || !password) {
@@ -80,6 +81,7 @@ const registerUser = asyncHandler(async (req, res) => {
     photo,
     department,
     employed,
+    phone,
   });
 
   //   Generate Token
