@@ -17,7 +17,7 @@ router.get("/getusers", getUsers);
 router.post("/register", registerUser);
 router.get("/loggedin", loginStatus);
 router.get("/logout", logout);
-router.get("/changepass", changePassword);
-router.get("/updateuser", updateUser);
+router.post("/changepass", changePassword);
+router.post("/updateuser", updateUser);
 
 module.exports = router;
