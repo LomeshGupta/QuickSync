@@ -224,7 +224,6 @@ const updateUser = asyncHandler(async (req, res) => {
 
   if (user) {
     const {
-      _id,
       username,
       fullname,
       email,
@@ -292,4 +291,6 @@ module.exports = {
   logout,
   loginUser,
   loginStatus,
+  updateUser,
+  changePassword,
 };
