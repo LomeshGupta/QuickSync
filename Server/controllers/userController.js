@@ -51,6 +51,14 @@ const registerUser = asyncHandler(async (req, res) => {
     department,
     employed,
     phone,
+    address1,
+    address2,
+    city,
+    state,
+    pincode,
+    insta,
+    facebook,
+    twitter,
   } = req.body;
   //validations
   if (!username || !fullname || !email || !password) {
@@ -82,6 +90,14 @@ const registerUser = asyncHandler(async (req, res) => {
     department,
     employed,
     phone,
+    address1,
+    address2,
+    city,
+    state,
+    pincode,
+    insta,
+    facebook,
+    twitter,
   });
 
   //   Generate Token
@@ -108,6 +124,14 @@ const registerUser = asyncHandler(async (req, res) => {
       employed,
       photo,
       phone,
+      address1,
+      address2,
+      city,
+      state,
+      pincode,
+      insta,
+      facebook,
+      twitter,
     } = user;
     res.status(201).json({
       _id,
@@ -120,6 +144,14 @@ const registerUser = asyncHandler(async (req, res) => {
       photo,
       phone,
       token,
+      address1,
+      address2,
+      city,
+      state,
+      pincode,
+      insta,
+      facebook,
+      twitter,
     });
   } else {
     res.status(400);
@@ -173,6 +205,14 @@ const loginUser = asyncHandler(async (req, res) => {
       employed,
       photo,
       phone,
+      address1,
+      address2,
+      city,
+      state,
+      pincode,
+      insta,
+      facebook,
+      twitter,
     } = user;
     res.status(200).json({
       _id,
@@ -185,6 +225,14 @@ const loginUser = asyncHandler(async (req, res) => {
       photo,
       phone,
       token,
+      address1,
+      address2,
+      city,
+      state,
+      pincode,
+      insta,
+      facebook,
+      twitter,
     });
   } else {
     res.status(400);
@@ -220,7 +268,7 @@ const logout = asyncHandler(async (req, res) => {
 
 // Update User
 const updateUser = asyncHandler(async (req, res) => {
-  const user = await User.findById(req._id);
+  const user = await User.findById(req.body._id);
 
   if (user) {
     const {
@@ -232,6 +280,14 @@ const updateUser = asyncHandler(async (req, res) => {
       employed,
       photo,
       phone,
+      address1,
+      address2,
+      city,
+      state,
+      pincode,
+      insta,
+      facebook,
+      twitter,
     } = user;
     user.username = req.body.username || username;
     user.fullname = req.body.fullname || fullname;
@@ -240,6 +296,14 @@ const updateUser = asyncHandler(async (req, res) => {
     user.designation = req.body.designation || designation;
     user.department = req.body.department || department;
     user.employed = req.body.employed || employed;
+    user.address1 = req.body.address1 || address1;
+    user.address2 = req.body.address2 || address2;
+    user.city = req.body.city || city;
+    user.state = req.body.state || state;
+    user.pincode = req.body.pincode || pincode;
+    user.insta = req.body.insta || insta;
+    user.facebook = req.body.facebook || facebook;
+    user.twitter = req.body.twitter || twitter;
 
     const updatedUser = await user.save();
     res.status(200).json({
