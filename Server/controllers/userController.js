@@ -264,7 +264,7 @@ const changePassword = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("User not found");
   }
-  res.send(password, oldPassword);
+  
   //Validate
   if (!oldPassword || !password) {
     res.status(400);
