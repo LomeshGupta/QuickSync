@@ -220,7 +220,7 @@ const logout = asyncHandler(async (req, res) => {
 
 // Update User
 const updateUser = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user._id);
+  const user = await User.findById(req._id);
 
   if (user) {
     const {
@@ -257,7 +257,7 @@ const updateUser = asyncHandler(async (req, res) => {
 
 //change password
 const changePassword = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user._id);
+  const user = await User.findById(req._id);
   const { oldPassword, password } = req.body;
 
   if (!user) {
