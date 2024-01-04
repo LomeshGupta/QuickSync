@@ -280,7 +280,7 @@ const changePassword = asyncHandler(async (req, res) => {
     const hashedpass = await bcrypt.hash(password, salt);
     user.password = hashedpass;
     await user.save();
-    res.status(200).send("Password has been changed successfully");
+    res.status(200).json({ message: "Password has been changed successfully" });
   } else {
     res.status(400);
     throw new Error("Old password is does not match");
