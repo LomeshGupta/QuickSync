@@ -264,7 +264,7 @@ const changePassword = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("User not found");
   }
-  
+
   //Validate
   if (!oldPassword || !password) {
     res.status(400);
@@ -276,7 +276,9 @@ const changePassword = asyncHandler(async (req, res) => {
 
   // Save new password
   if (user && passwordIsCorrect) {
-    user.password = password;
+    const salt = await bcrypt.genSalt(10);
+    const hashedpass = await bcrypt.hash(password, salt);
+    user.password = hashedpass;
     await user.save();
     res.status(200).send("Password has been changed successfully");
   } else {
