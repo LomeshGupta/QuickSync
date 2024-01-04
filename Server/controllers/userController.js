@@ -257,7 +257,7 @@ const updateUser = asyncHandler(async (req, res) => {
 
 //change password
 const changePassword = asyncHandler(async (req, res) => {
-  const user = await User.findById(req._id);
+  const user = await User.findById(req.body._id);
   const { oldPassword, password } = req.body;
 
   if (!user) {
