@@ -62,6 +62,7 @@ var userDetail = new userSchema(
     insta: { type: String },
     facebook: { type: String },
     twitter: { type: String },
+    bio: { type: String },
   },
   {
     timestamps: true,

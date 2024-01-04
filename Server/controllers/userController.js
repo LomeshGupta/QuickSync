@@ -59,6 +59,7 @@ const registerUser = asyncHandler(async (req, res) => {
     insta,
     facebook,
     twitter,
+    bio,
   } = req.body;
   //validations
   if (!username || !fullname || !email || !password) {
@@ -98,6 +99,7 @@ const registerUser = asyncHandler(async (req, res) => {
     insta,
     facebook,
     twitter,
+    bio,
   });
 
   //   Generate Token
@@ -132,6 +134,7 @@ const registerUser = asyncHandler(async (req, res) => {
       insta,
       facebook,
       twitter,
+      bio,
     } = user;
     res.status(201).json({
       _id,
@@ -152,6 +155,7 @@ const registerUser = asyncHandler(async (req, res) => {
       insta,
       facebook,
       twitter,
+      bio,
     });
   } else {
     res.status(400);
@@ -213,6 +217,7 @@ const loginUser = asyncHandler(async (req, res) => {
       insta,
       facebook,
       twitter,
+      bio,
     } = user;
     res.status(200).json({
       _id,
@@ -233,6 +238,7 @@ const loginUser = asyncHandler(async (req, res) => {
       insta,
       facebook,
       twitter,
+      bio,
     });
   } else {
     res.status(400);
@@ -288,6 +294,7 @@ const updateUser = asyncHandler(async (req, res) => {
       insta,
       facebook,
       twitter,
+      bio,
     } = user;
     user.username = req.body.username || username;
     user.fullname = req.body.fullname || fullname;
@@ -304,6 +311,7 @@ const updateUser = asyncHandler(async (req, res) => {
     user.insta = req.body.insta || insta;
     user.facebook = req.body.facebook || facebook;
     user.twitter = req.body.twitter || twitter;
+    user.bio = req.body.bio || bio;
 
     const updatedUser = await user.save();
     res.status(200).json({
