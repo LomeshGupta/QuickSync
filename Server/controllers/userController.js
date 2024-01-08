@@ -181,7 +181,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
   if (!user) {
     res.status(400);
-    throw new Error("User not found, please signup %1", usern);
+    throw new Error(usern);
   }
 
   // User exists, check if password is correct
