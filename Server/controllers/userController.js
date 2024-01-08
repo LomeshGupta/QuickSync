@@ -176,14 +176,12 @@ const loginUser = asyncHandler(async (req, res) => {
 
   const usern = username.toLowerCase();
 
-  console.log(usern);
-
   // Check if user exists
   const user = await User.findOne({ usern });
 
   if (!user) {
     res.status(400);
-    throw new Error("User not found, please signup");
+    throw new Error("User not found, please signup %1", usern);
   }
 
   // User exists, check if password is correct
