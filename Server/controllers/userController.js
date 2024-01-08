@@ -176,6 +176,8 @@ const loginUser = asyncHandler(async (req, res) => {
 
   const usern = username.toLowerCase();
 
+  console.log(usern);
+
   // Check if user exists
   const user = await User.findOne({ usern });
 
