@@ -68,8 +68,9 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   //check if username already exist
+  const usern = username.toLowerCase();
 
-  const userexist = await User.findOne({ username });
+  const userexist = await User.findOne({ usern });
 
   if (userexist) {
     res.status(400);
@@ -82,7 +83,7 @@ const registerUser = asyncHandler(async (req, res) => {
   //create new user
 
   const user = await User.create({
-    username,
+    username: usern,
     fullname,
     email,
     password: hashedpass,
