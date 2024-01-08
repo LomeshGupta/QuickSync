@@ -174,8 +174,10 @@ const loginUser = asyncHandler(async (req, res) => {
     throw new Error("Please add username and password");
   }
 
+  const usern = username.toLowerCase();
+
   // Check if user exists
-  const user = await User.findOne({ username });
+  const user = await User.findOne({ usern });
 
   if (!user) {
     res.status(400);
