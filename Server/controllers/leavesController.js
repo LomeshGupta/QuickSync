@@ -81,6 +81,17 @@ const AddLeave = asyncHandler(async (req, res) => {
   }
 });
 
+//get leave balance
+
+const getLeavesBalance = asyncHandler(async (req, res) => {
+  const { username, type } = req.body;
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  const leave = await Leave.find({ username, type });
+  res.status(200).json(leave);
+});
+
 // Login User
 const loginUser = asyncHandler(async (req, res) => {
   const { username, password } = req.body;
@@ -280,6 +291,7 @@ const changePassword = asyncHandler(async (req, res) => {
 module.exports = {
   AddLeave,
   getLeaves,
+  getLeavesBalance,
   deleteLeave,
   logout,
   loginUser,
