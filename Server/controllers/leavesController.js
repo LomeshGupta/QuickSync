@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const Leave = require("../models/leaveModel");
+const User = require("../models/userModel");
 const { json } = require("body-parser");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -46,6 +47,13 @@ const AddLeave = asyncHandler(async (req, res) => {
   if (!username || !type || !leaves || !createdDate) {
     res.status(400);
     throw new Error("Please enter all required fields.");
+  }
+
+  const user = await User.findOne({ username });
+
+  if (!user) {
+    res.status(400);
+    throw new Error("User not found, please signup");
   }
 
   //create new leave
