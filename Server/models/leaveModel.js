@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const leaveSchema = mongoose.Schema({
-  userId: {
+  username: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: "user",
@@ -20,6 +20,7 @@ const leaveSchema = mongoose.Schema({
   },
   expired: {
     type: Boolean,
+    default: false,
   },
 });
 

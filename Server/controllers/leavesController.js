@@ -24,142 +24,52 @@ const getLeaves = asyncHandler(async (req, res) => {
 });
 
 //delete one user------------------------------------------
-const deleteUser = asyncHandler(async (req, res) => {
-  const { username } = req.body;
-  if (!username) {
+const deleteLeave = asyncHandler(async (req, res) => {
+  const { _id } = req.body;
+  if (!_id) {
     res.status(400);
     throw new Error("Please enter all required fields.");
   }
-  const users = await User.deleteOne({ username });
+  const users = await Leave.deleteOne({ _id });
   res.status(200);
   res.send("deleted successfully");
 });
 
 //register user ---------------------------------------------
-const registerUser = asyncHandler(async (req, res) => {
+const AddLeave = asyncHandler(async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   // console.log(JSON.stringify(req.body));
-  const {
-    username,
-    fullname,
-    email,
-    password,
-    photo,
-    designation,
-    department,
-    employed,
-    phone,
-    address1,
-    address2,
-    city,
-    state,
-    pincode,
-    insta,
-    facebook,
-    twitter,
-    bio,
-  } = req.body;
+  const { username, type, leaves, createdDate } = req.body;
   //validations
-  if (!username || !fullname || !email || !password) {
+  if (!username || !type || !leaves || !createdDate) {
     res.status(400);
     throw new Error("Please enter all required fields.");
   }
 
-  //check if username already exist
+  //create new leave
 
-  const userexist = await User.findOne({ username });
-
-  if (userexist) {
-    res.status(400);
-    throw new Error("Username already exist.");
-  }
-  //encryption
-  const salt = await bcrypt.genSalt(10);
-  const hashedpass = await bcrypt.hash(password, salt);
-
-  //create new user
-
-  const user = await User.create({
+  const leave = await Leave.create({
     username,
-    fullname,
-    email,
-    password: hashedpass,
-    designation,
-    photo,
-    department,
-    employed,
-    phone,
-    address1,
-    address2,
-    city,
-    state,
-    pincode,
-    insta,
-    facebook,
-    twitter,
-    bio,
+    type,
+    leaves,
+    createdDate,
   });
 
-  //   Generate Token
-  const token = generateToken(user._id);
-
-  // Send HTTP-only cookie
-  res.cookie("token", token, {
-    path: "/",
-    httpOnly: true,
-    expires: new Date(Date.now() + 1000 * 86400), // 1 day
-    sameSite: "none",
-    secure: true,
-  });
-
-  if (user) {
-    const {
-      _id,
-      username,
-      fullname,
-      email,
-      password,
-      designation,
-      department,
-      employed,
-      photo,
-      phone,
-      address1,
-      address2,
-      city,
-      state,
-      pincode,
-      insta,
-      facebook,
-      twitter,
-      bio,
-    } = user;
+  if (leave) {
+    const { _id, username, type, leaves, createdDate, expired } = leave;
     res.status(201).json({
       _id,
       username,
-      fullname,
-      email,
-      designation,
-      department,
-      employed,
-      photo,
-      phone,
-      token,
-      address1,
-      address2,
-      city,
-      state,
-      pincode,
-      insta,
-      facebook,
-      twitter,
-      bio,
+      type,
+      leaves,
+      createdDate,
+      expired,
     });
   } else {
     res.status(400);
-    throw new Error("Invalid user data");
+    throw new Error("Invalid leave data");
   }
 });
 
@@ -360,9 +270,9 @@ const changePassword = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
-  registerUser,
+  AddLeave,
   getLeaves,
-  deleteUser,
+  deleteLeave,
   logout,
   loginUser,
   loginStatus,
