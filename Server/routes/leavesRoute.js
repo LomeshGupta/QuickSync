@@ -4,6 +4,6 @@ const router = express.Router();
 
 // router.post("/login", applyLeave);
 router.get("/getleaves", getLeaves);
-router.post("/register", AddLeave);
+router.post("/addleave", AddLeave);
 
 module.exports = router;
