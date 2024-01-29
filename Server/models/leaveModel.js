@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const leaveSchema = mongoose.Schema({
   username: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     required: true,
     ref: "user",
   },
