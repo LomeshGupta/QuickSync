@@ -6,7 +6,6 @@ const {
 } = require("../controllers/leavesController");
 const router = express.Router();
 
-// router.post("/login", applyLeave);
 router.get("/getleaves", getLeaves);
 router.post("/addleave", AddLeave);
 router.post("/getleavebal", getLeavesBalance);

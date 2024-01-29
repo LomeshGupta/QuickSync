@@ -89,7 +89,8 @@ const getLeavesBalance = asyncHandler(async (req, res) => {
   res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
   const leave = await Leave.find({ username, type });
-  res.status(200).json(leave);
+  const sum = leave.reduce((acc, item) => acc + item.leaves, 0);
+  res.status(200).json(sum);
 });
 
 // Login User
