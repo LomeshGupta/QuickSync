@@ -33,8 +33,8 @@ app.get("/", (req, res) => {
 });
 
 //error
-
 app.use(errorHandler);
+
 
 //connect to db and start server
 

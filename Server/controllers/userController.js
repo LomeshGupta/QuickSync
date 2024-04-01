@@ -19,7 +19,44 @@ const getUsers = asyncHandler(async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  const users = await User.find();
+
+  // Parse query parameters
+  const { sort, range, filter } = req.query;
+
+  // Define query conditions
+  const conditions = {};
+
+  // Apply filter if provided
+  if (filter) {
+    Object.assign(conditions, JSON.parse(filter));
+  }
+
+  // Define sorting options
+  let sortOptions = {};
+
+  // Apply sorting if provided
+  if (sort) {
+    const [field, order] = JSON.parse(sort);
+    sortOptions[field] = order === "ASC" ? 1 : -1;
+  }
+
+  // Define pagination options
+  let paginationOptions = {};
+
+  // Apply pagination if provided
+  if (range) {
+    const [start, end] = JSON.parse(range);
+    paginationOptions.skip = start;
+    paginationOptions.limit = end - start + 1;
+  }
+
+  // Fetch users based on query conditions, sorting, and pagination
+  const users = await User.find(conditions)
+    .sort(sortOptions)
+    .skip(paginationOptions.skip)
+    .limit(paginationOptions.limit);
+
+  // Send response with filtered, sorted, and paginated users
   res.status(200).json(users);
 });
 
